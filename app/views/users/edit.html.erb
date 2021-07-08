@@ -16,13 +16,7 @@
     </div>
   <% end %>
 
-  <% User::ROLES.each do |role| %>
-    <label>
-      <%= f.check_box role %>
-      <%= role.to_s.humanize %>
-    </label>
-    <br>
-  <% end %>
+  <%= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
 
   <%= f.button :submit %>
 

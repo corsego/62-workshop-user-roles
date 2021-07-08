@@ -13,6 +13,7 @@
         <th>email</th>
         <th>admin</th>
         <th>roles</th>
+        <th>edit roles</th>
       </tr>
     </thead>
   
@@ -22,7 +23,8 @@
           <td><%= user.id %></td>
           <td><%= user.email %></td>
           <td><%= user.admin %></td>
-          <td><%= user.roles %></td>
+          <td><%= user.roles.pluck(:name) %></td>
+          <td><%= link_to 'edit roles', edit_user_path(user) %></td>
         </tr>
       <% end %>
     </tbody>
