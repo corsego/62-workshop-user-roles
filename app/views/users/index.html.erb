@@ -13,6 +13,9 @@
         <th>email</th>
         <th>admin</th>
         <th>roles</th>
+        <th>posts</th>
+        <th>created posts</th>
+        <th>edited posts</th>
         <th>edit roles</th>
       </tr>
     </thead>
@@ -24,6 +27,9 @@
           <td><%= user.email %></td>
           <td><%= user.admin %></td>
           <td><%= user.roles.pluck(:name) %></td>
+          <td><%= user.posts.pluck(:id) %></td>
+          <td><%= user.created_posts.pluck(:id) %></td>
+          <td><%= user.edited_posts.pluck(:id) %></td>
           <td><%= link_to 'edit roles', edit_user_path(user) %></td>
         </tr>
       <% end %>
