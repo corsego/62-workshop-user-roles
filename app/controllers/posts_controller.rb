@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
     if @post.save
       redirect_to @post, notice: "Post was successfully created."
     else
@@ -33,8 +34,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    redirect_to posts_url, notice: "Post was successfully destroyed."
+    if current_user == @post.user
+      @post.destroy
+      redirect_to posts_url, notice: "Post was successfully destroyed."
+    else
+      redirect_to posts_url, alert: "Not authorized."
+    end
+
   end
 
   private
