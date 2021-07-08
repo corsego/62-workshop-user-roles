@@ -9,7 +9,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if current_user.admin?
+      @post = Post.new
+    else
+      redirect_to posts_url, alert: "Not authorized."
+    end
   end
 
   def edit
